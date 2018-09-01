@@ -2,14 +2,6 @@
 
 ## Draw a database design for a TODO App
 
-If you want to use software to do this use MySQL workbench or LucidCharts
-(online option)  And a tutorial on how to create an Entity-Relation-Diagram
-(ERD) (<https://www.youtube.com/watch?v=9L0CMnDGuLg>). Otherwise pen and paper
-is just fine, but take a picture put it in the homework directory!
-
-*(Note: It's not important you learn how to use a specific drawing tool but it
-is important you learn how to design a database!)*
-
 Design a database for an app that keeps track of TODO lists of its users. In
 this app a user can:
 
