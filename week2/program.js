@@ -23,6 +23,15 @@ class TodoModel {
 
     create(description, callback) {
         // Write code and query to create a new TODO item
+      //  const createTodo = `INSERT INTO todo_items(text, user_id) VALUES (${description}, 1);`
+        const createTodo = `INSERT INTO todo_items (text, user_id) VALUES ('${description}', 1);`
+        this.dbConnection.query(createTodo, function(err, results, fields){
+          if (err){
+            callback(err);
+            return;
+          }
+          callback(null);
+        });
     }
 
     update(id, description, callback) {
@@ -49,7 +58,7 @@ class TodoModel {
 const dbConnection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'admin',
     database : 'todo_app'
 });
 
@@ -62,11 +71,19 @@ dbConnection.connect(function(err) {
     console.log('connected as id ' + dbConnection.threadId);
 
     const todoModel = new TodoModel(dbConnection);
-    todoModel.load(function(err, todoItems) {
-        if(err) {
-            console.log("error loading TODO items:", err);
-        }
+    // todoModel.load(function(err, todoItems) {
+    //     if(err) {
+    //         console.log("error loading TODO items:", err);
+    //     }
+    //
+    //     console.log("existing todo items:", todoItems);
+    // });
 
-        console.log("existing todo items:", todoItems);
+    todoModel.create('work ', function(err){
+      if(err){
+        console.log("error creating TODO item:", err);
+        return;
+      }
+      console.log("new todo is created");
     });
 });
